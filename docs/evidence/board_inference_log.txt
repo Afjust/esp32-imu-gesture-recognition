@@ -1,0 +1,23 @@
+ESP32 board inference log (relevant excerpt)
+================================================
+
+I (209) cpu_start: Multicore app
+I (244) efuse_init: Min chip rev:     v0.0
+I (248) efuse_init: Max chip rev:     v3.99
+I (252) efuse_init: Chip rev:         v3.1
+I (318) INFER: init MPU6050...
+I (328) MPU6050: WHO_AM_I = 0x68 (expected 0x68)
+I (328) INFER: load model...
+I (328) INFER: arena used: 3360 bytes
+I (328) INFER: input shape: [1, 200, 6]
+I (338) INFER: start collecting...
+I (2328) INFER: pred=idle  logits=[8.86, 6.75, -6.75, -6.33, 1.69]  latency=4267 us
+I (4328) INFER: pred=idle  logits=[9.28, 6.75, -6.75, -6.33, 1.69]  latency=3707 us
+I (6328) INFER: pred=idle  logits=[9.28, 6.75, -6.75, -6.33, 1.69]  latency=3716 us
+I (8328) INFER: pred=idle  logits=[9.28, 6.75, -6.75, -6.33, 1.69]  latency=3695 us
+I (10328) INFER: pred=idle  logits=[9.28, 6.75, -6.75, -6.33, 1.69]  latency=3716 us
+I (12328) INFER: pred=idle  logits=[9.28, 6.75, -6.75, -6.33, 1.69]  latency=3695 us
+I (14328) INFER: pred=circle  logits=[5.06, 7.60, -7.60, -6.33, 2.95]  latency=3716 us
+
+Measured steady-state Invoke() latency range: 3695-3716 us.
+First warm-up inference: 4267 us.
