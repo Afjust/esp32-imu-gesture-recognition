@@ -180,7 +180,7 @@ models/4layer/imu_model_4layer_int8.tflite
 models/4layer/imu_model_4layer_int8.h
 ```
 
-`export_tflite.py` prints `MEAN`, `STD`, `INPUT_SCALE`, `INPUT_ZERO`, `OUTPUT_SCALE`, and `OUTPUT_ZERO`. After changing the model, copy these values into `main/config.h` and place the generated `.h` file in `components/imu_model/include/`.
+export_tflite.py prints MEAN, STD, INPUT_SCALE，INPUT_ZERO, OUTPUT_SCALE, and OUTPUT_ZERO. After changing the model, copy these values into main/config.h and place the generated .h file in `components/imu_model/include/`.
 
 ## ESP32 Build and Run
 
@@ -211,7 +211,7 @@ python serial_reader.py --port COM3
 python record.py --port COM3 --label circle --count 50 --duration 2.0
 ```
 
-`<PORT>`, `COM3`, and `/dev/ttyUSB0` are examples. Do not commit a hard-coded serial port from a personal machine.
+<PORT>, COM3, and /dev/ttyUSB0 are examples. Do not commit a hard-coded serial port from a personal machine.
 
 ## Current Metrics and Reproduction Status
 
