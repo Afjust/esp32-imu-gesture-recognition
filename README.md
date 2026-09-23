@@ -2,7 +2,7 @@
 
 An end-to-end gesture recognition project built around an ESP32 and an MPU6050. The project covers serial data collection, dataset preparation, 1D-CNN training, INT8 quantization, TensorFlow Lite Micro deployment, and on-device inference.
 
-Supported classes: `idle`, `circle`, `wave`, `shake`, and `figure8`.
+Supported classes: idle, circle, wave, shake, and figure8.
 
 ## Features
 
