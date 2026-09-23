@@ -76,7 +76,7 @@ The repository contains the following model artifacts:
 
 The model is approximately 6 times smaller than the original 14-layer version. The reported pure inference latency decreased from 63 ms to 3.7 ms, approximately a 17 times improvement. The original 14-layer model and its training logs are not included in this repository.
 
-The 4layer model reached a historical maximum of 92.11%, demonstrating that the architecture can reach this level with a high-quality training set. This is a historical result and does not correspond to the current `data.npz`. Before final submission, retrain, quantize, and evaluate with a fixed dataset version.
+The 4layer model reached a historical maximum of 92.11%, demonstrating that the architecture can reach this level with a high-quality training set. This is a historical result and does not correspond to the current data.npz. Before final submission, retrain, quantize, and evaluate with a fixed dataset version.
 
 The measured board-side arena usage and inference latency are available in [board_inference_log.txt](docs/evidence/board_inference_log.txt).
 
@@ -136,9 +136,9 @@ timestamp,ax,ay,az,gx,gy,gz,label
 
 The six axes contain raw MPU6050 integers, not physical units. Training data is resampled to 200 frames and normalized with the mean and standard deviation calculated from the training split.
 
-The current `data/` directory contains 778 CSV files, and the class distribution is not fully balanced. The latest generated `data.npz` contains 547 windows after short-sequence filtering, split into 382 training, 82 validation, and 83 test windows.
+The current data/ directory contains 778 CSV files, and the class distribution is not fully balanced. The latest generated data.npz contains 547 windows after short-sequence filtering, split into 382 training, 82 validation, and 83 test windows.
 
-**Note: the current `data/` directory and `data.npz` are for pipeline reference only.** The dataset has been modified repeatedly, its quality is poor, and its versions are inconsistent. Do not use it directly for final training or as the basis for reported accuracy. Recollect or clean the data, then run `dataset.py`, `train.py`, and `export_tflite.py` again.
+**Note: the current data/ directory and data.npz are for pipeline reference only.** The dataset has been modified repeatedly, its quality is poor, and its versions are inconsistent. Do not use it directly for final training or as the basis for reported accuracy. Recollect or clean the data, then run dataset.py, train.py, and export_tflite.py again.
 
 ## Training Data Quality
 
@@ -148,10 +148,10 @@ Check the following points when building the dataset:
 
 - Each CSV should contain only the target gesture. Exclude preparation movements, pauses, and hand changes.
 - Keep the start point, end point, motion amplitude, and grip direction consistent within each class.
-- Record `idle` under several realistic stationary poses instead of using only one pose.
+- Record idle under several realistic stationary poses instead of using only one pose.
 - Balance the class sample counts and check for duplicate or highly similar recordings.
 - Split data by recording session, subject, or device whenever possible to reduce leakage.
-- After regenerating `data.npz`, retrain, requantize, and remeasure. Do not reuse accuracy from an older dataset version.
+- After regenerating data.npz, retrain, requantize, and remeasure. Do not reuse accuracy from an older dataset version.
 
 In a historical experiment, the **70% pruned version reached a maximum accuracy of 100%**. This shows that a smaller model can achieve very high accuracy on a high-quality, distribution-consistent dataset. However, 100% often also indicates limited test-set difficulty and should not be presented as cross-user generalization without a separate independent test. Include the matching confusion matrix, dataset split, and training log when reporting this result.
 
