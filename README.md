@@ -234,33 +234,3 @@ The following limitations affect how these metrics should be interpreted:
 3. The current `sdkconfig` uses the Debug optimization level. For performance comparisons, use an explicit Release or Performance configuration and preserve the serial log, firmware revision, and sample count.
 4. `export_tflite.py` now uses `np.rint()` to match the device-side `roundf()` behavior. After retraining, evaluate with the corrected script instead of reusing accuracy obtained through truncation.
 
-## Reproducibility Checklist
-
-Keep the following artifacts for the final submission or release:
-
-- The raw CSV files or `data.npz` that exactly match the final model, including its SHA-256.
-- The complete `train.py` output, including the dataset split, class distribution, confusion matrix, and test accuracy.
-- The complete `export_tflite.py` output, including float32 and INT8 accuracy and all quantization parameters.
-- The original ESP32 serial log, including `arena used`, `model data len`, and multiple `latency` samples.
-- The ESP-IDF, TensorFlow, Python, and dependency versions used for the final build.
-
-## Cleanup Before Submission
-
-The following items should not be submitted as source code:
-
-- `build/`
-- `managed_components/`
-- `imu_project/__pycache__/`
-- `sdkconfig.old`
-- `pytest_hello_world.py`, which still tests the original ESP-IDF Hello World example
-- `.vscode/` settings containing local paths or serial ports
-
-The raw dataset is relatively large. If the course or reviewer does not require it, submit only the model and training code. If data is required, submit a confirmed final `data.npz` instead of the complete `data/` directory plus multiple abandoned training versions.
-
-## Known Limitations
-
-- The dataset is small and imbalanced.
-- The split is not grouped by recording session, subject, or device, so random window splitting may overestimate cross-session generalization.
-- Sampling relies on FreeRTOS delays, and the actual sampling period is not verified.
-- The driver reads `WHO_AM_I` but only prints the result; it does not return an error when the device ID does not match.
-- The MPU6050 data does not include temperature compensation, bias calibration, or a unified mounting orientation.
